@@ -51,7 +51,7 @@ package
 		/**
 		 * App funcionando em um computador?
 		 */
-		public static var desktop:Boolean = true;
+		public static var desktop:Boolean = false;
 		
 		/**
 		 * Tela do app.
