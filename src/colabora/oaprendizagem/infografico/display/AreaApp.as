@@ -3,10 +3,12 @@ package colabora.oaprendizagem.infografico.display
 	import art.ciclope.data.PersistentData;
 	import colabora.display.AreaImagens;
 	import colabora.display.EscolhaProjeto;
+	import colabora.display.TelaAjuda;
 	import colabora.display.TelaMensagem;
 	import colabora.oaprendizagem.dados.ObjetoAprendizagem;
 	import colabora.oaprendizagem.infografico.dados.Imagem;
 	import colabora.oaprendizagem.infografico.dados.Pagina;
+	import flash.display.Bitmap;
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.StageDisplayState;
@@ -83,6 +85,7 @@ package colabora.oaprendizagem.infografico.display
 		private var _telaLink:TelaLink;
 		private var _telaInfo:TelaInfo;
 		private var _telaEscolha:EscolhaProjeto;
+		private var _telaAjuda:TelaAjuda;
 		
 		private var _save:PersistentData;
 		private var _ultimaAc:String;
@@ -111,6 +114,7 @@ package colabora.oaprendizagem.infografico.display
 			// ações da tela principal
 			this._barraLateral.acMais = this.acMais;
 			this._barraLateral.acPagina = this.acPagina;
+			this._barraInferior.acAjuda = this.acAjuda;
 			this._barraInferior.acTelaCheia = this.acTelaCheia;
 			this._barraInferior.acExportar = this.acExportar;
 			this._barraInferior.acInfo = this.acInfo;
@@ -194,6 +198,16 @@ package colabora.oaprendizagem.infografico.display
 			this._telaEscolha.addEventListener(Event.CANCEL, onEscolhaCancel);
 			this._telaEscolha.addEventListener(Event.OPEN, onEscolhaOpen);
 			this._telaEscolha.addEventListener(Event.CLEAR, onEscolhaClear);
+			
+			// tela de ajuda
+			var ajuda:Vector.<Bitmap> = new Vector.<Bitmap>();
+			ajuda.push(Main.graficos.getGR('HELP01'));
+			ajuda.push(Main.graficos.getGR('HELP02'));
+			ajuda.push(Main.graficos.getGR('HELP03'));
+			ajuda.push(Main.graficos.getGR('HELP04'));
+			this._telaAjuda = new TelaAjuda(ajuda, Main.graficos.getSPGR('BTDireita'), Main.graficos.getSPGR('BTEsquerda'), Main.graficos.getSPGR('BTFechar'));
+			this._telaAjuda.adicionaBotao(Main.graficos.getSPGR('BTHelp2'), 1);
+			this._telaAjuda.adicionaBotao(Main.graficos.getSPGR('BTHelp3'), 2);
 			
 			// tela de compartilhamento
 			ObjetoAprendizagem.compartilhamento.addEventListener(Event.CLOSE, onCompartilhamentoClose);
@@ -700,7 +714,7 @@ package colabora.oaprendizagem.infografico.display
 		private function onEscolhaOpen(evt:Event):void
 		{
 			this._telaEscolha.mostrarMensagem('Localizando e importanto um arquivo de projeto.');
-			this._navegaProjeto.browseForOpen('Projetos de Infográfico', [new FileFilter('arquivos de projeto', '*.ifg')]);
+			this._navegaProjeto.browseForOpen('Projetos de Infográfico', [new FileFilter('arquivos de projeto', '*.zip')]);
 		}
 		
 		/**
@@ -749,7 +763,7 @@ package colabora.oaprendizagem.infografico.display
 		}
 		
 		/**
-		 * Falha na importação de um projeto.
+		 * Sucesso na importação de um projeto.
 		 */
 		private function onImportComplete(evt:Event):void
 		{
@@ -761,7 +775,7 @@ package colabora.oaprendizagem.infografico.display
 		}
 		
 		/**
-		 * Sucesso na importação de um projeto.
+		 * Erro na importação de um projeto.
 		 */
 		private function onImportCancel(evt:Event):void
 		{
@@ -884,6 +898,14 @@ package colabora.oaprendizagem.infografico.display
 					}
 					break;
 			}
+		}
+		
+		/**
+		 * Clique no botão de ajuda.
+		 */
+		private function acAjuda():void
+		{
+			this.stage.addChild(this._telaAjuda);
 		}
 		
 		/**

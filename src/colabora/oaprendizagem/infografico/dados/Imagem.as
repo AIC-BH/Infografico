@@ -141,6 +141,8 @@ package colabora.oaprendizagem.infografico.dados
 				retorno.x = this.x;
 				retorno.y = this.y;
 				retorno.scale = this.scaleX;
+				retorno.width = this.width;
+				retorno.height = this.height;
 				retorno.rotation = rot;
 				retorno.info = this._info;
 				retorno.tipo = this._tipo;

@@ -234,6 +234,34 @@ package graphic
 		[Embed(source="BTTelaCheia.png")] 
 		public var GRBTTelaCheia:Class;
 		
+		[Embed(source="BTManagana.png")] 
+		public var GRBTManagana:Class;
+		
+		[Embed(source="BTEsquerda.png")] 
+		public var GRBTEsquerda:Class;
+		
+		[Embed(source="BTDireita.png")] 
+		public var GRBTDireita:Class;
+		
+		[Embed(source="BTFechar.png")] 
+		public var GRBTFechar:Class;
+		
+		// HELP
+		
+		[Embed(source="help/help01.png", compression="true", quality="70")] 
+		public var HELP01:Class;
+		[Embed(source="help/help02.png", compression="true", quality="70")] 
+		public var HELP02:Class;
+		[Embed(source="help/help03.png", compression="true", quality="70")] 
+		public var HELP03:Class;
+		[Embed(source="help/help04.png", compression="true", quality="70")] 
+		public var HELP04:Class;
+		
+		[Embed(source="BTHelp2.png")] 
+		public var GRBTHelp2:Class;
+		[Embed(source="BTHelp3.png")] 
+		public var GRBTHelp3:Class;
+		
 		public function Graficos() 
 		{
 			
@@ -323,6 +351,17 @@ package graphic
 				case 'BTApresentar': bmp = new GRBTApresentar() as Bitmap; break;
 				case 'BTExportarImagem': bmp = new GRBTExportarImagem() as Bitmap; break;
 				case 'BTTelaCheia': bmp = new GRBTTelaCheia() as Bitmap; break;
+				case 'BTManagana': bmp = new GRBTManagana() as Bitmap; break;
+				case 'BTEsquerda': bmp = new GRBTEsquerda() as Bitmap; break;
+				case 'BTDireita': bmp = new GRBTDireita() as Bitmap; break;
+				case 'BTFechar': bmp = new GRBTFechar() as Bitmap; break;
+				
+				case 'HELP01': bmp = new HELP01() as Bitmap; break;
+				case 'HELP02': bmp = new HELP02() as Bitmap; break;
+				case 'HELP03': bmp = new HELP03() as Bitmap; break;
+				case 'HELP04': bmp = new HELP04() as Bitmap; break;
+				case 'BTHelp2': bmp = new GRBTHelp2() as Bitmap; break;
+				case 'BTHelp3': bmp = new GRBTHelp3() as Bitmap; break;
 			}
 			if (bmp != null) bmp.smoothing = true;
 			return (bmp);

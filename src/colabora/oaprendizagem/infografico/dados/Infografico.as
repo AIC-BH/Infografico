@@ -83,6 +83,7 @@ package colabora.oaprendizagem.infografico.dados
 			retorno.titulo = this.titulo;
 			retorno.tags = this.tags;
 			retorno.paginaAtual = this.paginaAtual;
+			retorno.app = ObjetoAprendizagem.codigo;
 			retorno.paginas = new Vector.<Object>();
 			for (var i:int = 0; i < this.paginas.length; i++) {
 				retorno.paginas.push(this.paginas[i].dados);
@@ -342,7 +343,7 @@ package colabora.oaprendizagem.infografico.dados
 						ok = true;
 					} catch (e:Error) { }
 					// json carregado
-					if ((json.id == null) || (json.titulo == null) || (json.tags == null) || (json.paginas == null)) {
+					if ((json.id == null) || (json.titulo == null) || (json.tags == null) || (json.paginas == null) || (json.app == null)) {
 						// não há informações suficientes
 						return ('');
 					} else {
@@ -369,9 +370,9 @@ package colabora.oaprendizagem.infografico.dados
 						var nomeArquivo:String;
 						if (json.titulo == '') {
 							var data:Date = new Date();
-							nomeArquivo = data.date + '-' + (data.month + 1) + '-' + data.fullYear + '.ifg';
+							nomeArquivo = data.date + '-' + (data.month + 1) + '-' + data.fullYear + ' - ' + ObjetoAprendizagem.codigo + '.zip';
 						} else {
-							nomeArquivo = json.titulo + '.ifg';
+							nomeArquivo = json.titulo + ' - ' + ObjetoAprendizagem.codigo + '.zip';
 						}
 						if (!File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/exportados').isDirectory) File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/exportados').createDirectory();
 						stream.open(File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/exportados/' + nomeArquivo), FileMode.WRITE);
@@ -513,13 +514,18 @@ package colabora.oaprendizagem.infografico.dados
 							// o arquivo não traz um json válido
 							this.dispatchEvent(new Event(Event.CANCEL));
 						} else {
-							if ((json.id == null) || (json.titulo == null) || (json.tags == null) || (json.paginas == null)) {
+							if ((json.id == null) || (json.titulo == null) || (json.tags == null) || (json.paginas == null) || (json.app == null)) {
 								// o arquivo json não traz as informações necessárias
 								this.dispatchEvent(new Event(Event.CANCEL));
 							} else {
-								// projeto ok: copiar para a pasta de documentos
-								pastaProjeto.moveTo(File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/projetos/' + json.id), true);
-								this.dispatchEvent(new Event(Event.COMPLETE));
+								if (String(json.app) == ObjetoAprendizagem.codigo) {
+									// projeto ok: copiar para a pasta de documentos
+									pastaProjeto.moveTo(File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/projetos/' + json.id), true);
+									this.dispatchEvent(new Event(Event.COMPLETE));
+								} else {
+									// o arquivo json não traz as um projeto de infográfico
+									this.dispatchEvent(new Event(Event.CANCEL));
+								}
 							}
 						}
 					}
