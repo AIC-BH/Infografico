@@ -48,12 +48,12 @@ package colabora.oaprendizagem.infografico.display
 		/**
 		 * Cor do fundo da tela do app.
 		 */
-		public static const CORBG:int = 0xCCCCCC;
+		public static const CORBG:int = 0xFFFFFF;
 		
 		/**
 		 * Cor do fundo das barras de botões.
 		 */
-		public static const CORBARRAS:int = 0x999999;
+		public static const CORBARRAS:int = 0xFFFFFF;
 		
 		/**
 		 * Tamanho dos botões.
@@ -173,8 +173,8 @@ package colabora.oaprendizagem.infografico.display
 													AreaApp.AREAHEIGHT,
 													Main.graficos.getSPGR('BTOk'),
 													Main.graficos.getSPGR('BTCancel'),
-													0x666666, 
-													0xFFFFFF);
+													0xFFFFFF, 
+													0xf08435);
 			this._telaMensagem.addEventListener(Event.COMPLETE, onMensagemOK);
 			this._telaMensagem.addEventListener(Event.CANCEL, onMensagemCancel);
 			
@@ -560,7 +560,7 @@ package colabora.oaprendizagem.infografico.display
 					stream.open(File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/imagens/' + nomeImagem), FileMode.WRITE);
 					stream.writeBytes(Main.conteudo.getPicture('png'));
 					stream.close();
-					this._telaMensagem.defineMensagem('<b>Imagem gravada</b><br />&nbsp;<br />A imagem da página atual foi gravada na pasta <b>' + File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/imagens/').nativePath + '</b> de seu dispositivo com o nome <b>' + nomeImagem + '</b>.');
+					this._telaMensagem.defineMensagem('<b>Imagem gravada!</b><br />&nbsp;<br />A tela atual do seu infográfico foi gravada como uma imagem na pasta <b>' + File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/imagens/').nativePath + '</b> do seu aparelho com o nome <b>' + nomeImagem + '</b>.');
 					this._ultimaAc = 'imagem exportada';
 					this.addChild(this._telaMensagem);
 					break;
@@ -597,7 +597,7 @@ package colabora.oaprendizagem.infografico.display
 					if (!acOK) {
 						// avisar sobre problema ao exportar projeto
 						this._ultimaAc = 'erro compartilhando projeto';
-						this._telaMensagem.defineMensagem('<b>Erro!</b><br />&nbsp;<br />Não foi possível exportar o projeto escolhido para compartilhamento. Por favor tente novamente.');
+						this._telaMensagem.defineMensagem('<b>Ops, alguma coisa deu errado...</b><br />&nbsp;<br />Não consegui exportar o seu projeto para compartilhamento. Quer tentar de novo?');
 						this.addChild(this._telaMensagem);
 					} else {
 						// iniciar compartilhamento
@@ -606,7 +606,7 @@ package colabora.oaprendizagem.infografico.display
 						} else {
 							// avisar sobre erro de compartilhamento
 							this._ultimaAc = 'erro compartilhando projeto';
-							this._telaMensagem.defineMensagem('<b>Erro!</b><br />&nbsp;<br />Não foi possível exportar o projeto escolhido para compartilhamento. Por favor tente novamente.');
+							this._telaMensagem.defineMensagem('<b>Desculpe...</b><br />&nbsp;<br />Não consegui exportar o seu projeto para compartilhamento. Vamos tentar mais uma vez?');
 							this.addChild(this._telaMensagem);
 						}
 					}
@@ -643,7 +643,7 @@ package colabora.oaprendizagem.infografico.display
 					if (!acOK) {
 						// avisar sobre problema ao abrir projeto
 						this.stage.removeChild(this._telaEscolha);
-						this._telaMensagem.defineMensagem('<b>Erro!</b><br />&nbsp;<br />Não foi possível abrir o projeto escolhido. Por favor tente novamente.');
+						this._telaMensagem.defineMensagem('<b>Oh, não!</b><br />&nbsp;<br />Não consegui abrir o projeto que você escolheu. Que tal tentar mais uma vez?');
 						this.addChild(this._telaMensagem);
 					} else {
 						// mostrar projeto aberto
@@ -665,12 +665,12 @@ package colabora.oaprendizagem.infografico.display
 					if (!acOK) {
 						// avisar sobre problema ao exportar projeto
 						this.stage.removeChild(this._telaEscolha);
-						this._telaMensagem.defineMensagem('<b>Erro!</b><br />&nbsp;<br />Não foi possível exportar o projeto escolhido. Por favor tente novamente.');
+						this._telaMensagem.defineMensagem('<b>Desculpe...</b><br />&nbsp;<br />Não consegui exportar seu projeto. Vamos tentar de novo?');
 						this.addChild(this._telaMensagem);
 					} else {
 						// avisar sobre o projeto exportado
 						this.stage.removeChild(this._telaEscolha);
-						this._telaMensagem.defineMensagem('<b>Exportação concluída</b><br />&nbsp;<br />O projeto selecionado foi exportado e está gravado com o nome <br />&nbsp;<br /><b>' + exportado + '</b><br />&nbsp;<br />na pasta <br />&nbsp;<br /><b>' + File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/exportados').nativePath + '</b><br />&nbsp;<br />de seu aparelho.');
+						this._telaMensagem.defineMensagem('<b>Prontinho ;-)</b><br />&nbsp;<br />Seu infográfico foi exportado. Ele está gravado com o nome <br />&nbsp;<br /><b>' + exportado + '</b><br />&nbsp;<br />na pasta <br />&nbsp;<br /><b>' + File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/exportados').nativePath + '</b><br />&nbsp;<br />de seu aparelho.');
 						this.addChild(this._telaMensagem);
 					}
 					break;
@@ -691,7 +691,7 @@ package colabora.oaprendizagem.infografico.display
 			if (this._telaEscolha.escolhido != null) {
 				if (this._telaEscolha.escolhido.id != null) {
 					if (this._telaEscolha.escolhido.titulo == '') this._telaEscolha.escolhido.titulo = 'sem nome';
-					this._telaMensagem.defineMensagem('<b>Apagar projeto</b><br />&nbsp;<br />Você tem certeza de que quer apagar o projeto <b>' + this._telaEscolha.escolhido.titulo + '</b> permanentemente? Esta ação não pode ser desfeita.', true);
+					this._telaMensagem.defineMensagem('<b>Quer mesmo apagar?</b><br />&nbsp;<br />Quer mesmo apagar o infográfico <b>' + this._telaEscolha.escolhido.titulo + '</b>? Se fizer isso, não vou conseguir recuperá-lo se você mudar de ideia.', true);
 					this._ultimaAc = 'apaga projeto';
 					this.stage.removeChild(this._telaEscolha);
 					this.addChild(this._telaMensagem);
@@ -732,7 +732,7 @@ package colabora.oaprendizagem.infografico.display
 		{
 			this._ultimaAc = 'projeto recebido';
 			if (!Main.projeto.importar(ObjetoAprendizagem.compartilhamento.download)) {
-				this._telaMensagem.defineMensagem('<b>Erro de importação!</b><br />&nbsp;<br />Não foi possível importar o projeto recebido. Por favor tente novamente.');
+				this._telaMensagem.defineMensagem('<b>Oh, não!</b><br />&nbsp;<br />Não consegui impotar o infográfico que você escolheu. Quer tentar novamente?');
 				this.stage.removeChild(ObjetoAprendizagem.compartilhamento);
 				this.addChild(this._telaMensagem);
 			}
@@ -768,7 +768,7 @@ package colabora.oaprendizagem.infografico.display
 		private function onImportComplete(evt:Event):void
 		{
 			this._ultimaAc = 'projeto recebido';
-			this._telaMensagem.defineMensagem('<b>Projeto importado!</b><br />&nbsp;<br />O projeto recebido foi importado corretamente. Use o botão "abrir projeto" para conferi-lo.');
+			this._telaMensagem.defineMensagem('<b>Chegou!</b><br />&nbsp;<br />O projeto de infográfico recebido! Use o botão "abrir projeto" para conferir.');
 			try { this.stage.removeChild(ObjetoAprendizagem.compartilhamento); } catch (e:Error) { }
 			try { this.removeChild(this._principal); } catch (e:Error) { }
 			this.addChild(this._telaMensagem);
@@ -780,7 +780,7 @@ package colabora.oaprendizagem.infografico.display
 		private function onImportCancel(evt:Event):void
 		{
 			this._ultimaAc = 'projeto recebido';
-			this._telaMensagem.defineMensagem('<b>Erro de importação!</b><br />&nbsp;<br />Não foi possível importar o projeto recebido. Por favor tente novamente.');
+			this._telaMensagem.defineMensagem('<b>Ops, alguma coisa deu errado...</b><br />&nbsp;<br />Não consegui importar o arquivo que recebi. Quer tentar mais uma vez?');
 			try { this.stage.removeChild(ObjetoAprendizagem.compartilhamento); } catch (e:Error) { }
 			try { this.removeChild(this._principal); } catch (e:Error) { }
 			this.addChild(this._telaMensagem);
@@ -868,13 +868,13 @@ package colabora.oaprendizagem.infografico.display
 		{
 			switch (acao) {
 				case '+': // adiciona página
-					this._telaMensagem.defineMensagem('<b>Adicionar página</b><br />&nbsp;<br />Você tem certeza de que quer adicionar uma página ao seu projeto de infográfico?', true);
+					this._telaMensagem.defineMensagem('<b>Nova página</b><br />&nbsp;<br />Quer adicionar uma página ao seu infográfico?', true);
 					this._ultimaAc = 'adiciona pagina';
 					this.removeChild(this._principal);
 					this.addChild(this._telaMensagem);
 					break;
 				case '-': // remove página
-					this._telaMensagem.defineMensagem('<b>Remover página</b><br />&nbsp;<br />Você tem certeza de que quer remover a página atual de seu projeto? Esta operação não pode ser desfeita.', true);
+					this._telaMensagem.defineMensagem('<b>Apagar página</b><br />&nbsp;<br />Você quer mesmo apagar a página atual de seu infográfico?', true);
 					this._ultimaAc = 'remove pagina';
 					this.removeChild(this._principal);
 					this.addChild(this._telaMensagem);
@@ -928,7 +928,7 @@ package colabora.oaprendizagem.infografico.display
 		private function acExportar():void
 		{
 			this._ultimaAc = 'exportar imagem';
-			this._telaMensagem.defineMensagem('<b>Exportar imagem</b><br />&nbsp;<br />Exportar a página atual como uma imagem?', true);
+			this._telaMensagem.defineMensagem('<b>Exportar imagem</b><br />&nbsp;<br />Você quer salvar a página atual do seu infográfico como uma imagem?', true);
 			this.removeChild(this._principal);
 			this.addChild(this._telaMensagem);
 		}
@@ -948,7 +948,7 @@ package colabora.oaprendizagem.infografico.display
 		private function acNovo():void
 		{
 			this._ultimaAc = 'novo projeto';
-			this._telaMensagem.defineMensagem('<b>Atenção!</b><br />&nbsp;<br />Você quer realmente criar um projeto novo? Alterações não gravadas no projeto atual serão perdidas!', true);
+			this._telaMensagem.defineMensagem('<b>Um novo infográfico?</b><br />&nbsp;<br />Você quer mesmo criar um infográfico novo? Qualquer alteração não salva no seu projeto atual vai ser perdida.', true);
 			this.addChild(this._telaMensagem);
 			this.removeChild(this._principal);
 		}
@@ -960,12 +960,12 @@ package colabora.oaprendizagem.infografico.display
 		{
 			if (Main.projeto.titulo == '') {
 				this._ultimaAc = 'aviso falta titulo';
-				this._telaMensagem.defineMensagem('<b>Atenção!</b><br />&nbsp;<br />Seu projeto ainda não tem um título e não pode ser gravado. Toque no botão de informações para incluir um título e tente novamente.');
+				this._telaMensagem.defineMensagem('<b>Um probleminha...</b><br />&nbsp;<br />Seu infográfico ainda não tem um título e não posso gravá-lo. Para dar um nome, toque no botão de informações.');
 				this.addChild(this._telaMensagem);
 				this.removeChild(this._principal);
 			} else {
 				this._ultimaAc = 'salvar projeto';
-				this._telaMensagem.defineMensagem('<b>Atenção!</b><br />&nbsp;<br />Você tem certeza de que quer salvar o projeto atual com o título <b>' + Main.projeto.titulo + '</b>?', true);
+				this._telaMensagem.defineMensagem('<b>Quase lá!</b><br />&nbsp;<br />Você quer mesmo salvar seu infográfico com o nome <b>' + Main.projeto.titulo + '</b>?', true);
 				this.addChild(this._telaMensagem);
 				this.removeChild(this._principal);
 			}
@@ -991,12 +991,12 @@ package colabora.oaprendizagem.infografico.display
 		{
 			if (Main.projeto.titulo == '') {
 				this._ultimaAc = 'aviso falta titulo';
-				this._telaMensagem.defineMensagem('<b>Atenção!</b><br />&nbsp;<br />Seu projeto ainda não tem um título e não pode ser compartilhado. Toque no botão de informações para incluir um título e tente novamente.');
+				this._telaMensagem.defineMensagem('<b>Oh, não!</b><br />&nbsp;<br />Seu infográfico ainda não tem um nome e não posso fazer o compartilhamento. Para dar um nome, toque no botão de informações.');
 				this.addChild(this._telaMensagem);
 				this.removeChild(this._principal);
 			} else {
 				this._ultimaAc = 'compartilhar projeto';
-				this._telaMensagem.defineMensagem('<b>Atenção!</b><br />&nbsp;<br />Você tem certeza de que quer compartilhar o projeto atual com o título <b>' + Main.projeto.titulo + '</b>?', true);
+				this._telaMensagem.defineMensagem('<b>Compartilhando...</b><br />&nbsp;<br />Você quer mesmo compartilhar seu infográfico com o nome <b>' + Main.projeto.titulo + '</b>?', true);
 				this.addChild(this._telaMensagem);
 				this.removeChild(this._principal);
 			}
@@ -1073,7 +1073,7 @@ package colabora.oaprendizagem.infografico.display
 			if (this.imagem != null) {
 				this._ultimaAc = 'apagar imagem';
 				this.removeChild(this._propriedades);
-				this._telaMensagem.defineMensagem('<b>Atenção</b><br />&nbsp;<br />Você realmente quer apagar esta imagem? Esta operação não pode ser desfeita.', true);
+				this._telaMensagem.defineMensagem('<b>Tem certeza?</b><br />&nbsp;<br />Você quer mesmo apagar esta imagem?', true);
 				this.addChild(this._telaMensagem);
 			}
 		}

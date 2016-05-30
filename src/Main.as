@@ -1,6 +1,7 @@
 package
 {
 	import colabora.display.AreaImagens;
+	import colabora.display.TelaSplash;
 	import colabora.oaprendizagem.infografico.dados.Infografico;
 	import colabora.oaprendizagem.infografico.display.AreaApp;
 	import flash.desktop.NativeApplication;
@@ -58,6 +59,11 @@ package
 		 */
 		public var appView:AreaApp;
 		
+		/**
+		 * Tela inicial.
+		 */
+		private var _splash:TelaSplash;
+		
 		public function Main() 
 		{
 			stage.scaleMode = StageScaleMode.NO_SCALE;
@@ -94,6 +100,11 @@ package
 			this.addChild(this.appView);
 			this.appView.posiciona();
 			
+			// aplicando tela inicial
+			this._splash = new TelaSplash(Main.graficos.getGR('Splash'), 5);
+			this._splash.addEventListener(Event.COMPLETE, onSplash);
+			this.stage.addChild(this._splash);
+			
 			// atualizando tamanho da tela
 			this.stage.addEventListener(Event.RESIZE, onResize);
 		}
@@ -104,6 +115,15 @@ package
 		private function onResize(evt:Event):void
 		{
 			this.appView.posiciona();
+		}
+		
+		/**
+		 * O tempo da tela inicial terminou.
+		 */
+		private function onSplash(evt:Event):void
+		{
+			this._splash.removeEventListener(Event.COMPLETE, onSplash);
+			this._splash = null;
 		}
 		
 		private function deactivate(e:Event):void 

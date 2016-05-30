@@ -398,6 +398,7 @@ package colabora.oaprendizagem.infografico.dados
 			this.x = Main.conteudo.oWidth / 2;
 			this.y = Main.conteudo.oHeight / 2;
 			this.rotation = 0;
+			this.transform.colorTransform = new ColorTransform(1, 1, 1, 1, 0, 0, 0);
 		}
 		
 		// FUNÇÕES PRIVADAS

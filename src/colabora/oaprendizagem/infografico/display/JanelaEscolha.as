@@ -48,7 +48,7 @@ package colabora.oaprendizagem.infografico.display
 			
 			// texto
 			this._texto = new TextField();
-			this._texto.defaultTextFormat = new TextFormat('_sans', 30, 0xFFFFFF);
+			this._texto.defaultTextFormat = new TextFormat('_sans', 30, 0xe04d4c);
 			this._texto.multiline = true;
 			this._texto.wordWrap = true;
 			this._texto.selectable = false;

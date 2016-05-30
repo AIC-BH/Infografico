@@ -262,6 +262,11 @@ package graphic
 		[Embed(source="BTHelp3.png")] 
 		public var GRBTHelp3:Class;
 		
+		// SPLASH
+		
+		[Embed(source="TelaSplash.png", compression="true", quality="90")] 
+		public var GRSplash:Class;
+		
 		public function Graficos() 
 		{
 			
@@ -362,6 +367,8 @@ package graphic
 				case 'HELP04': bmp = new HELP04() as Bitmap; break;
 				case 'BTHelp2': bmp = new GRBTHelp2() as Bitmap; break;
 				case 'BTHelp3': bmp = new GRBTHelp3() as Bitmap; break;
+				
+				case 'Splash': bmp = new GRSplash() as Bitmap; break;
 			}
 			if (bmp != null) bmp.smoothing = true;
 			return (bmp);

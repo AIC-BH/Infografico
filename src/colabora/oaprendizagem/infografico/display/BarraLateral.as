@@ -46,7 +46,7 @@ package colabora.oaprendizagem.infografico.display
 			
 			// página atual
 			this._pgatual = new TextField();
-			this._pgatual.defaultTextFormat = new TextFormat('_sans', 20, 0xFFFFFF, true, null, null, null, null, 'center');
+			this._pgatual.defaultTextFormat = new TextFormat('_sans', 20, 0xf08435, true, null, null, null, null, 'center');
 			this._pgatual.text = '88 / 88';
 			this._pgatual.multiline = false;
 			this._pgatual.wordWrap = false;
