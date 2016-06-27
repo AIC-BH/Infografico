@@ -77,7 +77,11 @@ package colabora.oaprendizagem.infografico.display
 		 */
 		public function atualiza():void
 		{
-			this._pgatual.text = (Main.projeto.pagina.numero + 1) + ' / ' + Main.projeto.paginas.length;
+			if (Main.projeto.pagina == null) {
+				this._pgatual.text = '1 / 1';
+			} else {
+				this._pgatual.text = (Main.projeto.pagina.numero + 1) + ' / ' + Main.projeto.paginas.length;
+			}
 		}
 		
 		// FUNÇÕES PRIVADAS

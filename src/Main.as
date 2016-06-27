@@ -1,5 +1,6 @@
 package
 {
+	import art.ciclope.io.FileBrowser;
 	import colabora.display.AreaImagens;
 	import colabora.display.TelaSplash;
 	import colabora.oaprendizagem.infografico.dados.Infografico;
@@ -12,6 +13,7 @@ package
 	import flash.filesystem.File;
 	import flash.ui.Multitouch;
 	import flash.ui.MultitouchInputMode;
+	import flash.utils.setTimeout;
 	import graphic.Graficos;
 	import colabora.display.Compartilhamento;
 	import colabora.oaprendizagem.dados.ObjetoAprendizagem;
@@ -64,8 +66,14 @@ package
 		 */
 		private var _splash:TelaSplash;
 		
+		public var browser:FileBrowser;
+		
 		public function Main() 
 		{
+			setTimeout(iniciar, 250);
+		}
+		
+		private function iniciar():void {
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			stage.addEventListener(Event.DEACTIVATE, deactivate);
@@ -87,6 +95,9 @@ package
 													Main.graficos.getSPGR('MensagemSucessoDownload'), 
 													Main.graficos.getSPGR('MensagemAguardeDownload'));
 													
+			// verifincando o projeto de exemplo
+			ObjetoAprendizagem.copiaExemplo('biomas');
+													
 			// preparando listagem da biblioteca
 			var biblio:File = File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/biblioteca/');
 			var original:File = File.applicationDirectory.resolvePath('biblioteca/');
@@ -101,12 +112,25 @@ package
 			this.appView.posiciona();
 			
 			// aplicando tela inicial
-			this._splash = new TelaSplash(Main.graficos.getGR('Splash'), 5);
+			this._splash = new TelaSplash(7);
 			this._splash.addEventListener(Event.COMPLETE, onSplash);
 			this.stage.addChild(this._splash);
 			
+			/*
+			browser = new FileBrowser(Main.graficos.getSPGR('BTOk'), Main.graficos.getSPGR('BTCancel'), 0xfbe0cc);
+			this.addChild(browser);
+			browser.listar('zip', 'Projetos para importar');
+			browser.addEventListener(Event.COMPLETE, onborwsercomplete);
+			*/
+			
 			// atualizando tamanho da tela
 			this.stage.addEventListener(Event.RESIZE, onResize);
+		}
+		
+		private function onborwsercomplete(evt:Event):void
+		{
+			var esc:File = new File(browser.escolhido.arquivo);
+			trace ('escolhido', esc.nativePath);
 		}
 		
 		/**
@@ -115,6 +139,7 @@ package
 		private function onResize(evt:Event):void
 		{
 			this.appView.posiciona();
+			if (this._splash != null) this._splash.resize();
 		}
 		
 		/**

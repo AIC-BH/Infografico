@@ -248,15 +248,56 @@ package graphic
 		
 		// HELP
 		
-		[Embed(source="help/help01.png", compression="true", quality="70")] 
-		public var HELP01:Class;
-		[Embed(source="help/help02.png", compression="true", quality="70")] 
-		public var HELP02:Class;
-		[Embed(source="help/help03.png", compression="true", quality="70")] 
-		public var HELP03:Class;
-		[Embed(source="help/help04.png", compression="true", quality="70")] 
-		public var HELP04:Class;
+		[Embed(source="help/ajuda00.png", compression="true", quality="70")] 
+		public var AJUDA00:Class;
+		[Embed(source="help/ajuda01.png", compression="true", quality="70")] 
+		public var AJUDA01:Class;
+		[Embed(source="help/ajuda02.png", compression="true", quality="70")] 
+		public var AJUDA02:Class;
+		[Embed(source="help/ajuda03.png", compression="true", quality="70")] 
+		public var AJUDA03:Class;
+		[Embed(source="help/ajuda04.png", compression="true", quality="70")] 
+		public var AJUDA04:Class;
+		[Embed(source="help/ajuda05.png", compression="true", quality="70")] 
+		public var AJUDA05:Class;
+		[Embed(source="help/ajuda06.png", compression="true", quality="70")] 
+		public var AJUDA06:Class;
+		[Embed(source="help/ajuda07.png", compression="true", quality="70")] 
+		public var AJUDA07:Class;
+		[Embed(source="help/ajuda08.png", compression="true", quality="70")] 
+		public var AJUDA08:Class;
+		[Embed(source="help/ajuda09.png", compression="true", quality="70")] 
+		public var AJUDA09:Class;
+		[Embed(source="help/ajuda10.png", compression="true", quality="70")] 
+		public var AJUDA10:Class;
+		[Embed(source="help/ajuda11.png", compression="true", quality="70")] 
+		public var AJUDA11:Class;
+		[Embed(source="help/ajuda12.png", compression="true", quality="70")] 
+		public var AJUDA12:Class;
+		[Embed(source="help/ajuda13.png", compression="true", quality="70")] 
+		public var AJUDA13:Class;
+		[Embed(source="help/ajuda14.png", compression="true", quality="70")] 
+		public var AJUDA14:Class;
+		[Embed(source="help/ajuda15.png", compression="true", quality="70")] 
+		public var AJUDA15:Class;
+		[Embed(source="help/ajuda16.png", compression="true", quality="70")] 
+		public var AJUDA16:Class;
+		[Embed(source="help/ajuda17.png", compression="true", quality="70")] 
+		public var AJUDA17:Class;
+		[Embed(source="help/ajuda18.png", compression="true", quality="70")] 
+		public var AJUDA18:Class;
+		[Embed(source="help/ajuda19.png", compression="true", quality="70")] 
+		public var AJUDA19:Class;
+		[Embed(source="help/ajuda20.png", compression="true", quality="70")] 
+		public var AJUDA20:Class;
+		[Embed(source="help/ajuda21.png", compression="true", quality="70")] 
+		public var AJUDA21:Class;
+		[Embed(source="help/ajuda22.png", compression="true", quality="80")] 
+		public var AJUDA22:Class;
 		
+		
+		[Embed(source="BTHelp1.png")] 
+		public var GRBTHelp1:Class;
 		[Embed(source="BTHelp2.png")] 
 		public var GRBTHelp2:Class;
 		[Embed(source="BTHelp3.png")] 
@@ -361,10 +402,31 @@ package graphic
 				case 'BTDireita': bmp = new GRBTDireita() as Bitmap; break;
 				case 'BTFechar': bmp = new GRBTFechar() as Bitmap; break;
 				
-				case 'HELP01': bmp = new HELP01() as Bitmap; break;
-				case 'HELP02': bmp = new HELP02() as Bitmap; break;
-				case 'HELP03': bmp = new HELP03() as Bitmap; break;
-				case 'HELP04': bmp = new HELP04() as Bitmap; break;
+				case 'AJUDA00': bmp = new AJUDA00() as Bitmap; break;
+				case 'AJUDA01': bmp = new AJUDA01() as Bitmap; break;
+				case 'AJUDA02': bmp = new AJUDA02() as Bitmap; break;
+				case 'AJUDA03': bmp = new AJUDA03() as Bitmap; break;
+				case 'AJUDA04': bmp = new AJUDA04() as Bitmap; break;
+				case 'AJUDA05': bmp = new AJUDA05() as Bitmap; break;
+				case 'AJUDA06': bmp = new AJUDA06() as Bitmap; break;
+				case 'AJUDA07': bmp = new AJUDA07() as Bitmap; break;
+				case 'AJUDA08': bmp = new AJUDA08() as Bitmap; break;
+				case 'AJUDA09': bmp = new AJUDA09() as Bitmap; break;
+				case 'AJUDA10': bmp = new AJUDA10() as Bitmap; break;
+				case 'AJUDA11': bmp = new AJUDA11() as Bitmap; break;
+				case 'AJUDA12': bmp = new AJUDA12() as Bitmap; break;
+				case 'AJUDA13': bmp = new AJUDA13() as Bitmap; break;
+				case 'AJUDA14': bmp = new AJUDA14() as Bitmap; break;
+				case 'AJUDA15': bmp = new AJUDA15() as Bitmap; break;
+				case 'AJUDA16': bmp = new AJUDA16() as Bitmap; break;
+				case 'AJUDA17': bmp = new AJUDA17() as Bitmap; break;
+				case 'AJUDA18': bmp = new AJUDA18() as Bitmap; break;
+				case 'AJUDA19': bmp = new AJUDA19() as Bitmap; break;
+				case 'AJUDA20': bmp = new AJUDA20() as Bitmap; break;
+				case 'AJUDA21': bmp = new AJUDA21() as Bitmap; break;
+				case 'AJUDA22': bmp = new AJUDA22() as Bitmap; break;
+				
+				case 'BTHelp1': bmp = new GRBTHelp1() as Bitmap; break;
 				case 'BTHelp2': bmp = new GRBTHelp2() as Bitmap; break;
 				case 'BTHelp3': bmp = new GRBTHelp3() as Bitmap; break;
 				

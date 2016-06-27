@@ -1,6 +1,7 @@
 package colabora.oaprendizagem.infografico.display 
 {
 	import art.ciclope.data.PersistentData;
+	import art.ciclope.io.FileBrowser;
 	import colabora.display.AreaImagens;
 	import colabora.display.EscolhaProjeto;
 	import colabora.display.TelaAjuda;
@@ -90,6 +91,7 @@ package colabora.oaprendizagem.infografico.display
 		private var _save:PersistentData;
 		private var _ultimaAc:String;
 		private var _navegaProjeto:File;
+		private var _navegaMobile:FileBrowser;
 		private var _apresentando:Boolean = false;
 		
 		
@@ -193,7 +195,8 @@ package colabora.oaprendizagem.infografico.display
 													Main.graficos.getSPGR('BTCancel'),
 													Main.graficos.getSPGR('BTAbrir'),
 													Main.graficos.getSPGR('BTLixeira'),
-													File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/projetos/' ));
+													File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/projetos/' ),
+													0xfbe0cc);
 			this._telaEscolha.addEventListener(Event.COMPLETE, onEscolhaOK);
 			this._telaEscolha.addEventListener(Event.CANCEL, onEscolhaCancel);
 			this._telaEscolha.addEventListener(Event.OPEN, onEscolhaOpen);
@@ -201,13 +204,34 @@ package colabora.oaprendizagem.infografico.display
 			
 			// tela de ajuda
 			var ajuda:Vector.<Bitmap> = new Vector.<Bitmap>();
-			ajuda.push(Main.graficos.getGR('HELP01'));
-			ajuda.push(Main.graficos.getGR('HELP02'));
-			ajuda.push(Main.graficos.getGR('HELP03'));
-			ajuda.push(Main.graficos.getGR('HELP04'));
+			ajuda.push(Main.graficos.getGR('AJUDA00'));
+			ajuda.push(Main.graficos.getGR('AJUDA01'));
+			ajuda.push(Main.graficos.getGR('AJUDA02'));
+			ajuda.push(Main.graficos.getGR('AJUDA03'));
+			ajuda.push(Main.graficos.getGR('AJUDA04'));
+			ajuda.push(Main.graficos.getGR('AJUDA05'));
+			ajuda.push(Main.graficos.getGR('AJUDA06'));
+			ajuda.push(Main.graficos.getGR('AJUDA07'));
+			ajuda.push(Main.graficos.getGR('AJUDA08'));
+			ajuda.push(Main.graficos.getGR('AJUDA09'));
+			ajuda.push(Main.graficos.getGR('AJUDA10'));
+			ajuda.push(Main.graficos.getGR('AJUDA11'));
+			ajuda.push(Main.graficos.getGR('AJUDA12'));
+			ajuda.push(Main.graficos.getGR('AJUDA13'));
+			ajuda.push(Main.graficos.getGR('AJUDA14'));
+			ajuda.push(Main.graficos.getGR('AJUDA15'));
+			ajuda.push(Main.graficos.getGR('AJUDA16'));
+			ajuda.push(Main.graficos.getGR('AJUDA17'));
+			ajuda.push(Main.graficos.getGR('AJUDA18'));
+			ajuda.push(Main.graficos.getGR('AJUDA19'));
+			ajuda.push(Main.graficos.getGR('AJUDA20'));
+			ajuda.push(Main.graficos.getGR('AJUDA21'));
+			ajuda.push(Main.graficos.getGR('AJUDA22'));
+			
 			this._telaAjuda = new TelaAjuda(ajuda, Main.graficos.getSPGR('BTDireita'), Main.graficos.getSPGR('BTEsquerda'), Main.graficos.getSPGR('BTFechar'));
-			this._telaAjuda.adicionaBotao(Main.graficos.getSPGR('BTHelp2'), 1);
-			this._telaAjuda.adicionaBotao(Main.graficos.getSPGR('BTHelp3'), 2);
+			this._telaAjuda.adicionaBotao(Main.graficos.getSPGR('BTHelp1'), 0);
+			this._telaAjuda.adicionaBotao(Main.graficos.getSPGR('BTHelp2'), 17);
+			this._telaAjuda.adicionaBotao(Main.graficos.getSPGR('BTHelp3'), 22);
 			
 			// tela de compartilhamento
 			ObjetoAprendizagem.compartilhamento.addEventListener(Event.CLOSE, onCompartilhamentoClose);
@@ -218,6 +242,11 @@ package colabora.oaprendizagem.infografico.display
 			this._navegaProjeto.addEventListener(Event.SELECT, onNavegadorPSelect);
 			this._navegaProjeto.addEventListener(Event.CANCEL, onNavegadorPFim);
 			this._navegaProjeto.addEventListener(IOErrorEvent.IO_ERROR, onNavegadorPFim);
+			
+			// navegação de importação em aparelhos móveis
+			this._navegaMobile = new FileBrowser(Main.graficos.getSPGR('BTOk'), Main.graficos.getSPGR('BTCancel'), 0xfbe0cc);
+			this._navegaMobile.addEventListener(Event.COMPLETE, onNavegadorMobSelect);
+			this._navegaMobile.addEventListener(Event.CANCEL, onNavegadorMobFim);
 			
 			// importação de projetos
 			Main.projeto.addEventListener(Event.CANCEL, onImportCancel);
@@ -568,6 +597,7 @@ package colabora.oaprendizagem.infografico.display
 					Main.projeto.clear();
 					Main.projeto.paginaAtual = 0;
 					this.limpaDisplay();
+					this._barraLateral.atualiza();
 					this.addChild(this._principal);
 					break;
 				case 'salvar projeto':
@@ -597,7 +627,7 @@ package colabora.oaprendizagem.infografico.display
 					if (!acOK) {
 						// avisar sobre problema ao exportar projeto
 						this._ultimaAc = 'erro compartilhando projeto';
-						this._telaMensagem.defineMensagem('<b>Ops, alguma coisa deu errado...</b><br />&nbsp;<br />Não consegui exportar o seu projeto para compartilhamento. Quer tentar de novo?');
+						this._telaMensagem.defineMensagem('<b>Ops, alguma coisa deu errado...</b><br />&nbsp;<br />Não consegui exportar o seu infográfico para compartilhamento. Quer tentar de novo?');
 						this.addChild(this._telaMensagem);
 					} else {
 						// iniciar compartilhamento
@@ -606,7 +636,7 @@ package colabora.oaprendizagem.infografico.display
 						} else {
 							// avisar sobre erro de compartilhamento
 							this._ultimaAc = 'erro compartilhando projeto';
-							this._telaMensagem.defineMensagem('<b>Desculpe...</b><br />&nbsp;<br />Não consegui exportar o seu projeto para compartilhamento. Vamos tentar mais uma vez?');
+							this._telaMensagem.defineMensagem('<b>Desculpe...</b><br />&nbsp;<br />Não consegui exportar o seu infográfico para compartilhamento. Vamos tentar mais uma vez?');
 							this.addChild(this._telaMensagem);
 						}
 					}
@@ -643,7 +673,7 @@ package colabora.oaprendizagem.infografico.display
 					if (!acOK) {
 						// avisar sobre problema ao abrir projeto
 						this.stage.removeChild(this._telaEscolha);
-						this._telaMensagem.defineMensagem('<b>Oh, não!</b><br />&nbsp;<br />Não consegui abrir o projeto que você escolheu. Que tal tentar mais uma vez?');
+						this._telaMensagem.defineMensagem('<b>Oh, não!</b><br />&nbsp;<br />Não consegui abrir o infográfico que você escolheu. Que tal tentar mais uma vez?');
 						this.addChild(this._telaMensagem);
 					} else {
 						// mostrar projeto aberto
@@ -665,7 +695,7 @@ package colabora.oaprendizagem.infografico.display
 					if (!acOK) {
 						// avisar sobre problema ao exportar projeto
 						this.stage.removeChild(this._telaEscolha);
-						this._telaMensagem.defineMensagem('<b>Desculpe...</b><br />&nbsp;<br />Não consegui exportar seu projeto. Vamos tentar de novo?');
+						this._telaMensagem.defineMensagem('<b>Desculpe...</b><br />&nbsp;<br />Não consegui exportar seu infográfico. Vamos tentar de novo?');
 						this.addChild(this._telaMensagem);
 					} else {
 						// avisar sobre o projeto exportado
@@ -713,8 +743,14 @@ package colabora.oaprendizagem.infografico.display
 		 */
 		private function onEscolhaOpen(evt:Event):void
 		{
-			this._telaEscolha.mostrarMensagem('Localizando e importanto um arquivo de projeto.');
-			this._navegaProjeto.browseForOpen('Projetos de Infográfico', [new FileFilter('arquivos de projeto', '*.zip')]);
+			if (Main.desktop) {
+				this._telaEscolha.mostrarMensagem('Localizando e importanto um arquivo de projeto.');
+				this._navegaProjeto.browseForOpen('Projetos de Infográfico', [new FileFilter('arquivos de projeto', '*.ifg')]);
+			} else {
+				this._telaEscolha.parent.removeChild(this._telaEscolha);
+				this._navegaMobile.listar('ifg', 'Escolha um projeto para importar');
+				this.stage.addChild(this._navegaMobile);
+			}
 		}
 		
 		/**
@@ -744,7 +780,7 @@ package colabora.oaprendizagem.infografico.display
 		private function onNavegadorPFim(evt:Event):void
 		{
 			// refazendo a listagem
-			this._telaEscolha.listar();
+			this._telaEscolha.listar('Defina o projeto a exportar ou escolha um arquivo para importar');
 		}
 		
 		/**
@@ -758,7 +794,35 @@ package colabora.oaprendizagem.infografico.display
 				this.stage.removeChild(this._telaEscolha);
 			} else {
 				// somentar listar novamente
-				this._telaEscolha.listar();
+				this._telaEscolha.listar('Erro ao importar o projeto: defina o projeto a exportar ou escolha um arquivo para importar');
+			}
+		}
+		
+		/**
+		 * Navegação por arquivo móvel terminada sem nenhuma escolha.
+		 */
+		private function onNavegadorMobFim(evt:Event):void
+		{
+			// refazendo a listagem
+			this._navegaMobile.parent.removeChild(this._navegaMobile);
+			this._telaEscolha.listar('Defina o projeto a exportar ou escolha um arquivo para importar');
+			this.stage.addChild(this._telaEscolha);
+		}
+		
+		/**
+		 * Recebendo um arquivo móvel de projeto selecionado.
+		 */
+		private function onNavegadorMobSelect(evt:Event):void
+		{
+			// importando
+			this._navegaMobile.parent.removeChild(this._navegaMobile);
+			var arq:File = new File(this._navegaMobile.escolhido.arquivo);
+			if (Main.projeto.importar(arq)) {
+				// aguardar importação
+			} else {
+				// somente listar novamente
+				this._telaEscolha.listar('Erro ao importar o projeto: defina o projeto a exportar ou escolha um arquivo para importar');
+				this.stage.addChild(this._telaEscolha);
 			}
 		}
 		
@@ -768,7 +832,7 @@ package colabora.oaprendizagem.infografico.display
 		private function onImportComplete(evt:Event):void
 		{
 			this._ultimaAc = 'projeto recebido';
-			this._telaMensagem.defineMensagem('<b>Chegou!</b><br />&nbsp;<br />O projeto de infográfico recebido! Use o botão "abrir projeto" para conferir.');
+			this._telaMensagem.defineMensagem('<b>Chegou!</b><br />&nbsp;<br />O projeto de infográfico foi recebido! Use o botão "abrir projeto" para conferir.');
 			try { this.stage.removeChild(ObjetoAprendizagem.compartilhamento); } catch (e:Error) { }
 			try { this.removeChild(this._principal); } catch (e:Error) { }
 			this.addChild(this._telaMensagem);
