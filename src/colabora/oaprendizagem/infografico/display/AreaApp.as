@@ -227,6 +227,7 @@ package colabora.oaprendizagem.infografico.display
 			ajuda.push(Main.graficos.getGR('AJUDA20'));
 			ajuda.push(Main.graficos.getGR('AJUDA21'));
 			ajuda.push(Main.graficos.getGR('AJUDA22'));
+			ajuda.push(Main.graficos.getGR('AJUDA23'));
 			
 			this._telaAjuda = new TelaAjuda(ajuda, Main.graficos.getSPGR('BTDireita'), Main.graficos.getSPGR('BTEsquerda'), Main.graficos.getSPGR('BTFechar'));
 			this._telaAjuda.adicionaBotao(Main.graficos.getSPGR('BTHelp1'), 0);

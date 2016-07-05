@@ -294,6 +294,8 @@ package graphic
 		public var AJUDA21:Class;
 		[Embed(source="help/ajuda22.png", compression="true", quality="80")] 
 		public var AJUDA22:Class;
+		[Embed(source="help/ajuda23.png", compression="true", quality="70")] 
+		public var AJUDA23:Class;
 		
 		
 		[Embed(source="BTHelp1.png")] 
@@ -425,6 +427,7 @@ package graphic
 				case 'AJUDA20': bmp = new AJUDA20() as Bitmap; break;
 				case 'AJUDA21': bmp = new AJUDA21() as Bitmap; break;
 				case 'AJUDA22': bmp = new AJUDA22() as Bitmap; break;
+				case 'AJUDA23': bmp = new AJUDA23() as Bitmap; break;
 				
 				case 'BTHelp1': bmp = new GRBTHelp1() as Bitmap; break;
 				case 'BTHelp2': bmp = new GRBTHelp2() as Bitmap; break;
