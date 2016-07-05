@@ -4,7 +4,7 @@
   <versionNumber>0.1</versionNumber>
   <supportedProfiles>mobileDevice</supportedProfiles>
   <filename>Infografico</filename>
-  <name>Infografico</name>
+  <name>Infográficos</name>
   <android>
     <manifestAdditions><![CDATA[<manifest android:installLocation="auto">
 	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
