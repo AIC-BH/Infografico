@@ -96,7 +96,7 @@ package
 													Main.graficos.getSPGR('MensagemAguardeDownload'));
 													
 			// verifincando o projeto de exemplo
-			ObjetoAprendizagem.copiaExemplo('biomas');
+			ObjetoAprendizagem.copiaExemplo('exemplo-biomas');
 													
 			// preparando listagem da biblioteca
 			var biblio:File = File.documentsDirectory.resolvePath(ObjetoAprendizagem.codigo + '/biblioteca/');

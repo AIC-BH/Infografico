@@ -5,6 +5,7 @@ package colabora.oaprendizagem.infografico.display
 	import colabora.display.AreaImagens;
 	import colabora.display.EscolhaProjeto;
 	import colabora.display.TelaAjuda;
+	import colabora.display.TelaHelpInicio;
 	import colabora.display.TelaMensagem;
 	import colabora.oaprendizagem.dados.ObjetoAprendizagem;
 	import colabora.oaprendizagem.infografico.dados.Imagem;
@@ -87,6 +88,7 @@ package colabora.oaprendizagem.infografico.display
 		private var _telaInfo:TelaInfo;
 		private var _telaEscolha:EscolhaProjeto;
 		private var _telaAjuda:TelaAjuda;
+		private var _ajudaInloco:TelaHelpInicio;
 		
 		private var _save:PersistentData;
 		private var _ultimaAc:String;
@@ -264,11 +266,17 @@ package colabora.oaprendizagem.infografico.display
 			// dados persistentes
 			this._save = new PersistentData(ObjetoAprendizagem.codigo);
 			if (this._save.isSet('ultimo')) {
+				/*
 				if (Main.projeto.carregaProjeto(this._save.getValue('ultimo'))) {
 					Main.projeto.paginaAtual = 0;
 					this.mostraDisplay();
 				}
+				*/
 			}
+			
+			// ajuda in loco
+			this._ajudaInloco = new TelaHelpInicio(Main.graficos.getGR('AJUDAINLOCO'));
+			this.addChild(this._ajudaInloco);
 			
 			// criar primeira página?
 			if (Main.projeto.paginas.length == 0) Main.projeto.adicionaPagina();
@@ -1026,6 +1034,11 @@ package colabora.oaprendizagem.infografico.display
 			if (Main.projeto.titulo == '') {
 				this._ultimaAc = 'aviso falta titulo';
 				this._telaMensagem.defineMensagem('<b>Um probleminha...</b><br />&nbsp;<br />Seu infográfico ainda não tem um título e não posso gravá-lo. Para dar um nome, toque no botão de informações.');
+				this.addChild(this._telaMensagem);
+				this.removeChild(this._principal);
+			} else if (Main.projeto.id == 'exemplo-biomas') {
+				this._ultimaAc = 'aviso exemplo';
+				this._telaMensagem.defineMensagem('<b>Um probleminha...</b><br />&nbsp;<br />Alterações no projeto de exemplo não podem ser gravadas.');
 				this.addChild(this._telaMensagem);
 				this.removeChild(this._principal);
 			} else {
